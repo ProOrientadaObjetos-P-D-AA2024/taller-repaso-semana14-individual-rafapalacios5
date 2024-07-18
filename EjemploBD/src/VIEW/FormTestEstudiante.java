@@ -1,6 +1,8 @@
 package VIEW;
 import MODEL.Estudiante;
 import CONTROLER.ProcesarEstudiantes;
+import MODEL.ConeccionDB;
+import java.sql.Connection;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 public class FormTestEstudiante extends javax.swing.JFrame {
@@ -37,6 +39,11 @@ public class FormTestEstudiante extends javax.swing.JFrame {
         });
 
         jButton3.setText("Insertar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Cerrar");
 
@@ -45,11 +52,11 @@ public class FormTestEstudiante extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Nota1", "Nota2", "Promedio", "Estado"
+                "Nombre", "Nota1", "Nota2", "Promedio", "Estado", "Cedula"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.String.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -95,6 +102,10 @@ public class FormTestEstudiante extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+             /*ConeccionDB cdb =new ConeccionDB ();
+               cdb.insertarEstudiante();
+               cdb.actualizarEstudiante();
+               cdb.EliminarEstudiante();*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -105,8 +116,12 @@ public class FormTestEstudiante extends javax.swing.JFrame {
         ProcesarEstudiantes procesarEstudiantes = new ProcesarEstudiantes(lstEst);
         lstEst = procesarEstudiantes.getLstEstudiantes();
         for (Estudiante est : lstEst) 
-            this.modelo.addRow(new Object[]{est.nombreEst, est.nota1, est.nota2, est.promedio, est.estado});
+            this.modelo.addRow(new Object[]{est.nombreEst, est.nota1, est.nota2, est.promedio, est.estado, est.cedula});
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
